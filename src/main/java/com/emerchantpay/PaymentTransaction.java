@@ -1,22 +1,22 @@
 package com.emerchantpay;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import lombok.Data;
 
-import java.time.LocalDate;
-import java.util.Date;
-
 @Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonRootName(value = "payment_transaction")
 public class PaymentTransaction {
-    String card_number;
-    String cvv;
-    String expiration_date;
-    String amount;
-    String usage;
-    String transaction_type;
-    String card_holder;
-    String email;
-    String address;
+    private String card_number;
+    private String cvv;
+    private String expiration_date;
+    private String amount;
+    private String usage;
+    private String transaction_type;
+    private String card_holder;
+    private String email;
+    private String address;
+    private String reference_id;
 }

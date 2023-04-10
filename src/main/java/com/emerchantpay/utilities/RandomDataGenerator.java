@@ -4,7 +4,6 @@ import com.emerchantpay.PaymentTransaction;
 import com.github.javafaker.Faker;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 
 public class RandomDataGenerator {
@@ -24,7 +23,7 @@ public class RandomDataGenerator {
         paymentTransaction.setAmount(String.valueOf(faker.number().numberBetween(1, 5000)));
         paymentTransaction.setEmail(faker.internet().emailAddress());
         paymentTransaction.setExpiration_date(simpleDateFormat.format(new Date()));
-        paymentTransaction.setUsage(faker.hitchhikersGuideToTheGalaxy().marvinQuote());
+        paymentTransaction.setUsage(faker.gameOfThrones().dragon() + ": "+ faker.hitchhikersGuideToTheGalaxy().marvinQuote());
     }
 
 }
