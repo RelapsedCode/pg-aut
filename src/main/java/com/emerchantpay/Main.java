@@ -23,6 +23,7 @@ public class Main {
         boolean isRunning = true;
 
         ReqSender reqSender = new ReqSender();
+        ResVerifier resVerifier = new ResVerifier();
         String paymentTransactionLastId = null;
         PaymentTransaction paymentTransaction = null;
         ValidatableResponse res = null;
@@ -39,6 +40,7 @@ public class Main {
                     new RandomDataGenerator().generateRandData(paymentTransaction);
                     res = reqSender.createNewTransaction("/payment_transactions", paymentTransaction, true);
                     paymentTransactionLastId = res.extract().path("unique_id");
+                    resVerifier.verifyRes(res, 200);
                 }
                 case 2 -> {
                     paymentTransaction = new PaymentTransaction();
