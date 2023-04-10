@@ -1,7 +1,36 @@
 package com.emerchantpay;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        Scanner sc = new Scanner(System.in);
+        List<String> menu = new ArrayList<>();
+        System.out.println("Payment gateway test options: ");
+        menu.add("\n0. Exit.");
+        menu.add("1. Send a valid payment transaction request and expect an approved response");
+        menu.add("2. Send a valid void transaction request and expect an approved response");
+        menu.add("3. Send a valid payment transaction with an invalid authentication and expect an appropriate response (401)");
+        menu.add("4. Send a void transaction pointing to a non-existent payment transaction and expect 404");
+        menu.add("5. Send a void transaction pointing to an existent void transaction and expect 422");
+
+        boolean isRunning = true;
+
+        while (isRunning) {
+            menu.forEach(System.out::println);
+            System.out.print("\nEnter the selected func(): ");
+            int option = sc.nextInt();
+            sc.nextLine();
+            switch (option) {
+                case 0:
+                    isRunning = false;
+                    break;
+                case 1:
+                    break;
+            }
+        }
+
     }
 }
