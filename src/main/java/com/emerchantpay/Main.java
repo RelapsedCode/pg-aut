@@ -1,5 +1,7 @@
 package com.emerchantpay;
 
+import com.emerchantpay.utilities.RandomDataGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -17,6 +19,7 @@ public class Main {
         menu.add("5. Send a void transaction pointing to an existent void transaction and expect 422");
 
         boolean isRunning = true;
+        ReqSender reqSender = new ReqSender();
 
         while (isRunning) {
             menu.forEach(System.out::println);
@@ -28,6 +31,9 @@ public class Main {
                     isRunning = false;
                     break;
                 case 1:
+                    PaymentTransaction paymentTransaction = new PaymentTransaction();
+                    new RandomDataGenerator().generateRandData(paymentTransaction);
+                    reqSender.createNewTransaction("/payment_transactions", paymentTransaction, true);
                     break;
             }
         }
