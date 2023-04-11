@@ -16,7 +16,7 @@ public class ReqSender {
 
     @SneakyThrows
     public ValidatableResponse createNewTransaction(String endpoint, PaymentTransaction paymentTransaction, Boolean isAuthenticationOn) {
-        authorization = isAuthenticationOn ? configFileReader.getPropertyValue("AUTHORIZATION") : null;
+        authorization = isAuthenticationOn ? configFileReader.getPropertyValue("AUTHORIZATION") : "";
         ValidatableResponse response = null;
         ObjectMapper om = new ObjectMapper();
         om.enable(SerializationFeature.WRAP_ROOT_VALUE);

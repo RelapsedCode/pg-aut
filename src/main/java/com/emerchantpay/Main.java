@@ -81,7 +81,8 @@ public class Main {
 					if (lastVoidedTransaction != null) {
 						paymentTransaction.setReference_id(lastVoidedTransaction);
 						res = reqSender.createNewTransaction(ENDPOINT, paymentTransaction, true);
-						resVerifier.verifyResStatusCode(res, 422);
+						resVerifier.verifyResStatusCode(res, 422)
+								.verifyInvalidReference(res);
 					} else {
 						System.out.println("Please generate a valid void transaction and try again.");
 					}

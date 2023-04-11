@@ -3,6 +3,8 @@ package com.emerchantpay;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+
 import io.restassured.response.ValidatableResponse;
 
 public class ResVerifier {
@@ -18,8 +20,8 @@ public class ResVerifier {
 	}
 
 	public ResVerifier verifyInvalidReference(ValidatableResponse res) {
-		String reference_id = res.extract().path("reference_id");
-		assertTrue(reference_id.contains("Invalid reference transaction"));
+		ArrayList<String> reference_id = res.extract().path("reference_id");
+		assertTrue(reference_id.get(0).contains("Invalid reference transaction"));
 		return this;
 	}
 
