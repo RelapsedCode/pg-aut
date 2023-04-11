@@ -1,19 +1,18 @@
 package com.emerchantpay;
 
+import static com.emerchantpay.utilities.ConfigFactory.getManualRequestSpec;
+
 import com.emerchantpay.utilities.ConfigFileReader;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+
 import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
 import lombok.SneakyThrows;
 
-import static com.emerchantpay.utilities.ConfigFactory.getManualRequestSpec;
-
 public class ReqSender {
     ConfigFileReader configFileReader = new ConfigFileReader();
     String authorization;
-    String authPassword;
-    String authUsername;
 
     @SneakyThrows
     public ValidatableResponse createNewTransaction(String endpoint, PaymentTransaction paymentTransaction, Boolean isAuthenticationOn) {
@@ -32,10 +31,9 @@ public class ReqSender {
                         .when()
                         .post(endpoint)
                         .then()
-//                      .spec(getManualResponseSpec())
                         .log().body();
         } catch (RuntimeException e) {
-            System.out.println("Smth went wrong");
+            System.out.println("Request not send, inspect the log and try again.");
         }
         return response;
     }
